@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="347d9b4b89054aa2bc66f1cce8f7591e" Name="Diagram1">
+        <EntityTypeShape EntityType="Nov4PracModel.Архив_Блюда" Width="1.5" PointX="7.75" PointY="5.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="Nov4PracModel.Архив_Приготовление" Width="1.5" PointX="10.875" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Nov4PracModel.Архив_Продукты" Width="1.5" PointX="10" PointY="3" IsExpanded="true" />
+        <EntityTypeShape EntityType="Nov4PracModel.Архив_Рецепты" Width="1.5" PointX="13.25" PointY="7.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Nov4PracModel.Архив_СоставБлюд" Width="1.5" PointX="13.375" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Nov4PracModel.Блюда" Width="1.5" PointX="0.75" PointY="3.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Nov4PracModel.Приготовление" Width="1.5" PointX="3" PointY="2.5" IsExpanded="true" />
+        <EntityTypeShape EntityType="Nov4PracModel.Продукты" Width="1.5" PointX="1" PointY="7" IsExpanded="true" />
+        <EntityTypeShape EntityType="Nov4PracModel.Рецепты" Width="1.5" PointX="3" PointY="5.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="Nov4PracModel.СоставБлюд" Width="1.5" PointX="5.375" PointY="3.75" IsExpanded="true" />
+        <AssociationConnector Association="Nov4PracModel.FK_Архив_Приготовление_Архив_Блюда" ManuallyRouted="false" />
+        <AssociationConnector Association="Nov4PracModel.FK_Архив_Рецепты_Архив_Блюда" ManuallyRouted="false" />
+        <AssociationConnector Association="Nov4PracModel.FK_Архив_СоставБлюд_Архив_Блюда" ManuallyRouted="false" />
+        <AssociationConnector Association="Nov4PracModel.FK_Архив_СоставБлюд_Архив_Продукты" ManuallyRouted="false" />
+        <AssociationConnector Association="Nov4PracModel.FK_Приготовление_Блюда" ManuallyRouted="false" />
+        <AssociationConnector Association="Nov4PracModel.FK_Рецепты_Блюда" ManuallyRouted="false" />
+        <AssociationConnector Association="Nov4PracModel.FK_СоставБлюд_Блюда" ManuallyRouted="false" />
+        <AssociationConnector Association="Nov4PracModel.FK_СоставБлюд_Продукты" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

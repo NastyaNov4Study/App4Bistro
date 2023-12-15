@@ -1,0 +1,624 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Nov4PracModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Архив_Блюда">
+          <Key>
+            <PropertyRef Name="Код_блюда" />
+          </Key>
+          <Property Name="Код_блюда" Type="int" Nullable="false" />
+          <Property Name="Название_блюда" Type="varchar" MaxLength="150" />
+          <Property Name="Вид_блюда" Type="varchar" MaxLength="150" />
+          <Property Name="Выход" Type="int" />
+          <Property Name="Изображение" Type="image" />
+        </EntityType>
+        <EntityType Name="Архив_Приготовление">
+          <Key>
+            <PropertyRef Name="Код_приготовления" />
+          </Key>
+          <Property Name="Код_приготовления" Type="int" Nullable="false" />
+          <Property Name="Код_блюда" Type="int" />
+          <Property Name="Количество_порций" Type="int" />
+          <Property Name="Дата_приготовления" Type="date" />
+        </EntityType>
+        <EntityType Name="Архив_Продукты">
+          <Key>
+            <PropertyRef Name="Код_продукта" />
+          </Key>
+          <Property Name="Код_продукта" Type="int" Nullable="false" />
+          <Property Name="Название_продукта" Type="varchar" MaxLength="150" />
+          <Property Name="Калорийность" Type="int" />
+          <Property Name="Вес_продукта" Type="int" />
+          <Property Name="Цена" Type="int" />
+        </EntityType>
+        <EntityType Name="Архив_Рецепты">
+          <Key>
+            <PropertyRef Name="Код_рецепта" />
+          </Key>
+          <Property Name="Код_рецепта" Type="int" Nullable="false" />
+          <Property Name="Код_блюда" Type="int" />
+          <Property Name="Время_приготовления" Type="int" />
+          <Property Name="Технология_приготовления" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Архив_СоставБлюд">
+          <Key>
+            <PropertyRef Name="Код_состава" />
+          </Key>
+          <Property Name="Код_состава" Type="int" Nullable="false" />
+          <Property Name="Код_блюда" Type="int" />
+          <Property Name="Код_продукта" Type="int" />
+        </EntityType>
+        <EntityType Name="Блюда">
+          <Key>
+            <PropertyRef Name="Код_блюда" />
+          </Key>
+          <Property Name="Код_блюда" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название_блюда" Type="varchar" MaxLength="150" />
+          <Property Name="Вид_блюда" Type="varchar" MaxLength="150" />
+          <Property Name="Выход" Type="int" />
+          <Property Name="Изображение" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="Приготовление">
+          <Key>
+            <PropertyRef Name="Код_приготовления" />
+          </Key>
+          <Property Name="Код_приготовления" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_блюда" Type="int" />
+          <Property Name="Количество_порций" Type="int" />
+          <Property Name="Дата_приготовления" Type="date" />
+        </EntityType>
+        <EntityType Name="Продукты">
+          <Key>
+            <PropertyRef Name="Код_продукта" />
+          </Key>
+          <Property Name="Код_продукта" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Название_продукта" Type="varchar" MaxLength="150" />
+          <Property Name="Калорийность" Type="int" />
+          <Property Name="Вес_продукта" Type="int" />
+          <Property Name="Цена" Type="int" />
+        </EntityType>
+        <EntityType Name="Рецепты">
+          <Key>
+            <PropertyRef Name="Код_рецепта" />
+          </Key>
+          <Property Name="Код_рецепта" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_блюда" Type="int" />
+          <Property Name="Время_приготовления" Type="int" />
+          <Property Name="Технология_приготовления" Type="varchar" MaxLength="150" />
+        </EntityType>
+        <EntityType Name="СоставБлюд">
+          <Key>
+            <PropertyRef Name="Код_состава" />
+          </Key>
+          <Property Name="Код_состава" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Код_блюда" Type="int" />
+          <Property Name="Код_продукта" Type="int" />
+        </EntityType>
+        <Association Name="FK_Архив_Приготовление_Архив_Блюда">
+          <End Role="Архив_Блюда" Type="Self.Архив_Блюда" Multiplicity="0..1" />
+          <End Role="Архив_Приготовление" Type="Self.Архив_Приготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Архив_Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Архив_Приготовление">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Архив_Рецепты_Архив_Блюда">
+          <End Role="Архив_Блюда" Type="Self.Архив_Блюда" Multiplicity="0..1" />
+          <End Role="Архив_Рецепты" Type="Self.Архив_Рецепты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Архив_Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Архив_Рецепты">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Архив_СоставБлюд_Архив_Блюда">
+          <End Role="Архив_Блюда" Type="Self.Архив_Блюда" Multiplicity="0..1" />
+          <End Role="Архив_СоставБлюд" Type="Self.Архив_СоставБлюд" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Архив_Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Архив_СоставБлюд">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Архив_СоставБлюд_Архив_Продукты">
+          <End Role="Архив_Продукты" Type="Self.Архив_Продукты" Multiplicity="0..1" />
+          <End Role="Архив_СоставБлюд" Type="Self.Архив_СоставБлюд" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Архив_Продукты">
+              <PropertyRef Name="Код_продукта" />
+            </Principal>
+            <Dependent Role="Архив_СоставБлюд">
+              <PropertyRef Name="Код_продукта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Приготовление_Блюда">
+          <End Role="Блюда" Type="Self.Блюда" Multiplicity="0..1" />
+          <End Role="Приготовление" Type="Self.Приготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Приготовление">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рецепты_Блюда">
+          <End Role="Блюда" Type="Self.Блюда" Multiplicity="0..1" />
+          <End Role="Рецепты" Type="Self.Рецепты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Рецепты">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_СоставБлюд_Блюда">
+          <End Role="Блюда" Type="Self.Блюда" Multiplicity="0..1" />
+          <End Role="СоставБлюд" Type="Self.СоставБлюд" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="СоставБлюд">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_СоставБлюд_Продукты">
+          <End Role="Продукты" Type="Self.Продукты" Multiplicity="0..1" />
+          <End Role="СоставБлюд" Type="Self.СоставБлюд" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукты">
+              <PropertyRef Name="Код_продукта" />
+            </Principal>
+            <Dependent Role="СоставБлюд">
+              <PropertyRef Name="Код_продукта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Nov4PracModelContainer">
+          <EntitySet Name="Архив_Блюда" EntityType="Self.Архив_Блюда" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Архив_Приготовление" EntityType="Self.Архив_Приготовление" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Архив_Продукты" EntityType="Self.Архив_Продукты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Архив_Рецепты" EntityType="Self.Архив_Рецепты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Архив_СоставБлюд" EntityType="Self.Архив_СоставБлюд" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Блюда" EntityType="Self.Блюда" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Приготовление" EntityType="Self.Приготовление" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Продукты" EntityType="Self.Продукты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Рецепты" EntityType="Self.Рецепты" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="СоставБлюд" EntityType="Self.СоставБлюд" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Архив_Приготовление_Архив_Блюда" Association="Self.FK_Архив_Приготовление_Архив_Блюда">
+            <End Role="Архив_Блюда" EntitySet="Архив_Блюда" />
+            <End Role="Архив_Приготовление" EntitySet="Архив_Приготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Архив_Рецепты_Архив_Блюда" Association="Self.FK_Архив_Рецепты_Архив_Блюда">
+            <End Role="Архив_Блюда" EntitySet="Архив_Блюда" />
+            <End Role="Архив_Рецепты" EntitySet="Архив_Рецепты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Архив_СоставБлюд_Архив_Блюда" Association="Self.FK_Архив_СоставБлюд_Архив_Блюда">
+            <End Role="Архив_Блюда" EntitySet="Архив_Блюда" />
+            <End Role="Архив_СоставБлюд" EntitySet="Архив_СоставБлюд" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Архив_СоставБлюд_Архив_Продукты" Association="Self.FK_Архив_СоставБлюд_Архив_Продукты">
+            <End Role="Архив_Продукты" EntitySet="Архив_Продукты" />
+            <End Role="Архив_СоставБлюд" EntitySet="Архив_СоставБлюд" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Приготовление_Блюда" Association="Self.FK_Приготовление_Блюда">
+            <End Role="Блюда" EntitySet="Блюда" />
+            <End Role="Приготовление" EntitySet="Приготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рецепты_Блюда" Association="Self.FK_Рецепты_Блюда">
+            <End Role="Блюда" EntitySet="Блюда" />
+            <End Role="Рецепты" EntitySet="Рецепты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_СоставБлюд_Блюда" Association="Self.FK_СоставБлюд_Блюда">
+            <End Role="Блюда" EntitySet="Блюда" />
+            <End Role="СоставБлюд" EntitySet="СоставБлюд" />
+          </AssociationSet>
+          <AssociationSet Name="FK_СоставБлюд_Продукты" Association="Self.FK_СоставБлюд_Продукты">
+            <End Role="Продукты" EntitySet="Продукты" />
+            <End Role="СоставБлюд" EntitySet="СоставБлюд" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Nov4PracModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Архив_Блюда">
+          <Key>
+            <PropertyRef Name="Код_блюда" />
+          </Key>
+          <Property Name="Код_блюда" Type="Int32" Nullable="false" />
+          <Property Name="Название_блюда" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Вид_блюда" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Выход" Type="Int32" />
+          <Property Name="Изображение" Type="Binary" MaxLength="Max" FixedLength="false" />
+          <NavigationProperty Name="Архив_Приготовление" Relationship="Self.FK_Архив_Приготовление_Архив_Блюда" FromRole="Архив_Блюда" ToRole="Архив_Приготовление" />
+          <NavigationProperty Name="Архив_Рецепты" Relationship="Self.FK_Архив_Рецепты_Архив_Блюда" FromRole="Архив_Блюда" ToRole="Архив_Рецепты" />
+          <NavigationProperty Name="Архив_СоставБлюд" Relationship="Self.FK_Архив_СоставБлюд_Архив_Блюда" FromRole="Архив_Блюда" ToRole="Архив_СоставБлюд" />
+        </EntityType>
+        <EntityType Name="Архив_Приготовление">
+          <Key>
+            <PropertyRef Name="Код_приготовления" />
+          </Key>
+          <Property Name="Код_приготовления" Type="Int32" Nullable="false" />
+          <Property Name="Код_блюда" Type="Int32" />
+          <Property Name="Количество_порций" Type="Int32" />
+          <Property Name="Дата_приготовления" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Архив_Блюда" Relationship="Self.FK_Архив_Приготовление_Архив_Блюда" FromRole="Архив_Приготовление" ToRole="Архив_Блюда" />
+        </EntityType>
+        <EntityType Name="Архив_Продукты">
+          <Key>
+            <PropertyRef Name="Код_продукта" />
+          </Key>
+          <Property Name="Код_продукта" Type="Int32" Nullable="false" />
+          <Property Name="Название_продукта" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Калорийность" Type="Int32" />
+          <Property Name="Вес_продукта" Type="Int32" />
+          <Property Name="Цена" Type="Int32" />
+          <NavigationProperty Name="Архив_СоставБлюд" Relationship="Self.FK_Архив_СоставБлюд_Архив_Продукты" FromRole="Архив_Продукты" ToRole="Архив_СоставБлюд" />
+        </EntityType>
+        <EntityType Name="Архив_Рецепты">
+          <Key>
+            <PropertyRef Name="Код_рецепта" />
+          </Key>
+          <Property Name="Код_рецепта" Type="Int32" Nullable="false" />
+          <Property Name="Код_блюда" Type="Int32" />
+          <Property Name="Время_приготовления" Type="Int32" />
+          <Property Name="Технология_приготовления" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Архив_Блюда" Relationship="Self.FK_Архив_Рецепты_Архив_Блюда" FromRole="Архив_Рецепты" ToRole="Архив_Блюда" />
+        </EntityType>
+        <EntityType Name="Архив_СоставБлюд">
+          <Key>
+            <PropertyRef Name="Код_состава" />
+          </Key>
+          <Property Name="Код_состава" Type="Int32" Nullable="false" />
+          <Property Name="Код_блюда" Type="Int32" />
+          <Property Name="Код_продукта" Type="Int32" />
+          <NavigationProperty Name="Архив_Блюда" Relationship="Self.FK_Архив_СоставБлюд_Архив_Блюда" FromRole="Архив_СоставБлюд" ToRole="Архив_Блюда" />
+          <NavigationProperty Name="Архив_Продукты" Relationship="Self.FK_Архив_СоставБлюд_Архив_Продукты" FromRole="Архив_СоставБлюд" ToRole="Архив_Продукты" />
+        </EntityType>
+        <EntityType Name="Блюда">
+          <Key>
+            <PropertyRef Name="Код_блюда" />
+          </Key>
+          <Property Name="Код_блюда" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_блюда" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Вид_блюда" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Выход" Type="Int32" />
+          <Property Name="Изображение" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Приготовление" Relationship="Self.FK_Приготовление_Блюда" FromRole="Блюда" ToRole="Приготовление" />
+          <NavigationProperty Name="Рецепты" Relationship="Self.FK_Рецепты_Блюда" FromRole="Блюда" ToRole="Рецепты" />
+          <NavigationProperty Name="СоставБлюд" Relationship="Self.FK_СоставБлюд_Блюда" FromRole="Блюда" ToRole="СоставБлюд" />
+        </EntityType>
+        <EntityType Name="Приготовление">
+          <Key>
+            <PropertyRef Name="Код_приготовления" />
+          </Key>
+          <Property Name="Код_приготовления" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_блюда" Type="Int32" />
+          <Property Name="Количество_порций" Type="Int32" />
+          <Property Name="Дата_приготовления" Type="DateTime" Precision="0" />
+          <NavigationProperty Name="Блюда" Relationship="Self.FK_Приготовление_Блюда" FromRole="Приготовление" ToRole="Блюда" />
+        </EntityType>
+        <EntityType Name="Продукты">
+          <Key>
+            <PropertyRef Name="Код_продукта" />
+          </Key>
+          <Property Name="Код_продукта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Название_продукта" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Калорийность" Type="Int32" />
+          <Property Name="Вес_продукта" Type="Int32" />
+          <Property Name="Цена" Type="Int32" />
+          <NavigationProperty Name="СоставБлюд" Relationship="Self.FK_СоставБлюд_Продукты" FromRole="Продукты" ToRole="СоставБлюд" />
+        </EntityType>
+        <EntityType Name="Рецепты">
+          <Key>
+            <PropertyRef Name="Код_рецепта" />
+          </Key>
+          <Property Name="Код_рецепта" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_блюда" Type="Int32" />
+          <Property Name="Время_приготовления" Type="Int32" />
+          <Property Name="Технология_приготовления" Type="String" MaxLength="150" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Блюда" Relationship="Self.FK_Рецепты_Блюда" FromRole="Рецепты" ToRole="Блюда" />
+        </EntityType>
+        <EntityType Name="СоставБлюд">
+          <Key>
+            <PropertyRef Name="Код_состава" />
+          </Key>
+          <Property Name="Код_состава" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Код_блюда" Type="Int32" />
+          <Property Name="Код_продукта" Type="Int32" />
+          <NavigationProperty Name="Блюда" Relationship="Self.FK_СоставБлюд_Блюда" FromRole="СоставБлюд" ToRole="Блюда" />
+          <NavigationProperty Name="Продукты" Relationship="Self.FK_СоставБлюд_Продукты" FromRole="СоставБлюд" ToRole="Продукты" />
+        </EntityType>
+        <Association Name="FK_Архив_Приготовление_Архив_Блюда">
+          <End Role="Архив_Блюда" Type="Self.Архив_Блюда" Multiplicity="0..1" />
+          <End Role="Архив_Приготовление" Type="Self.Архив_Приготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Архив_Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Архив_Приготовление">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Архив_Рецепты_Архив_Блюда">
+          <End Role="Архив_Блюда" Type="Self.Архив_Блюда" Multiplicity="0..1" />
+          <End Role="Архив_Рецепты" Type="Self.Архив_Рецепты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Архив_Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Архив_Рецепты">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Архив_СоставБлюд_Архив_Блюда">
+          <End Role="Архив_Блюда" Type="Self.Архив_Блюда" Multiplicity="0..1" />
+          <End Role="Архив_СоставБлюд" Type="Self.Архив_СоставБлюд" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Архив_Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Архив_СоставБлюд">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Архив_СоставБлюд_Архив_Продукты">
+          <End Role="Архив_Продукты" Type="Self.Архив_Продукты" Multiplicity="0..1" />
+          <End Role="Архив_СоставБлюд" Type="Self.Архив_СоставБлюд" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Архив_Продукты">
+              <PropertyRef Name="Код_продукта" />
+            </Principal>
+            <Dependent Role="Архив_СоставБлюд">
+              <PropertyRef Name="Код_продукта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Приготовление_Блюда">
+          <End Role="Блюда" Type="Self.Блюда" Multiplicity="0..1" />
+          <End Role="Приготовление" Type="Self.Приготовление" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Приготовление">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Рецепты_Блюда">
+          <End Role="Блюда" Type="Self.Блюда" Multiplicity="0..1" />
+          <End Role="Рецепты" Type="Self.Рецепты" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="Рецепты">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_СоставБлюд_Блюда">
+          <End Role="Блюда" Type="Self.Блюда" Multiplicity="0..1" />
+          <End Role="СоставБлюд" Type="Self.СоставБлюд" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Блюда">
+              <PropertyRef Name="Код_блюда" />
+            </Principal>
+            <Dependent Role="СоставБлюд">
+              <PropertyRef Name="Код_блюда" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_СоставБлюд_Продукты">
+          <End Role="Продукты" Type="Self.Продукты" Multiplicity="0..1" />
+          <End Role="СоставБлюд" Type="Self.СоставБлюд" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Продукты">
+              <PropertyRef Name="Код_продукта" />
+            </Principal>
+            <Dependent Role="СоставБлюд">
+              <PropertyRef Name="Код_продукта" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Nov4PracEntities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Архив_Блюда" EntityType="Self.Архив_Блюда" />
+          <EntitySet Name="Архив_Приготовление" EntityType="Self.Архив_Приготовление" />
+          <EntitySet Name="Архив_Продукты" EntityType="Self.Архив_Продукты" />
+          <EntitySet Name="Архив_Рецепты" EntityType="Self.Архив_Рецепты" />
+          <EntitySet Name="Архив_СоставБлюд" EntityType="Self.Архив_СоставБлюд" />
+          <EntitySet Name="Блюда" EntityType="Self.Блюда" />
+          <EntitySet Name="Приготовление" EntityType="Self.Приготовление" />
+          <EntitySet Name="Продукты" EntityType="Self.Продукты" />
+          <EntitySet Name="Рецепты" EntityType="Self.Рецепты" />
+          <EntitySet Name="СоставБлюд" EntityType="Self.СоставБлюд" />
+          <AssociationSet Name="FK_Архив_Приготовление_Архив_Блюда" Association="Self.FK_Архив_Приготовление_Архив_Блюда">
+            <End Role="Архив_Блюда" EntitySet="Архив_Блюда" />
+            <End Role="Архив_Приготовление" EntitySet="Архив_Приготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Архив_Рецепты_Архив_Блюда" Association="Self.FK_Архив_Рецепты_Архив_Блюда">
+            <End Role="Архив_Блюда" EntitySet="Архив_Блюда" />
+            <End Role="Архив_Рецепты" EntitySet="Архив_Рецепты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Архив_СоставБлюд_Архив_Блюда" Association="Self.FK_Архив_СоставБлюд_Архив_Блюда">
+            <End Role="Архив_Блюда" EntitySet="Архив_Блюда" />
+            <End Role="Архив_СоставБлюд" EntitySet="Архив_СоставБлюд" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Архив_СоставБлюд_Архив_Продукты" Association="Self.FK_Архив_СоставБлюд_Архив_Продукты">
+            <End Role="Архив_Продукты" EntitySet="Архив_Продукты" />
+            <End Role="Архив_СоставБлюд" EntitySet="Архив_СоставБлюд" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Приготовление_Блюда" Association="Self.FK_Приготовление_Блюда">
+            <End Role="Блюда" EntitySet="Блюда" />
+            <End Role="Приготовление" EntitySet="Приготовление" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Рецепты_Блюда" Association="Self.FK_Рецепты_Блюда">
+            <End Role="Блюда" EntitySet="Блюда" />
+            <End Role="Рецепты" EntitySet="Рецепты" />
+          </AssociationSet>
+          <AssociationSet Name="FK_СоставБлюд_Блюда" Association="Self.FK_СоставБлюд_Блюда">
+            <End Role="Блюда" EntitySet="Блюда" />
+            <End Role="СоставБлюд" EntitySet="СоставБлюд" />
+          </AssociationSet>
+          <AssociationSet Name="FK_СоставБлюд_Продукты" Association="Self.FK_СоставБлюд_Продукты">
+            <End Role="Продукты" EntitySet="Продукты" />
+            <End Role="СоставБлюд" EntitySet="СоставБлюд" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Nov4PracModelContainer" CdmEntityContainer="Nov4PracEntities1">
+          <EntitySetMapping Name="Архив_Блюда">
+            <EntityTypeMapping TypeName="Nov4PracModel.Архив_Блюда">
+              <MappingFragment StoreEntitySet="Архив_Блюда">
+                <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+                <ScalarProperty Name="Название_блюда" ColumnName="Название_блюда" />
+                <ScalarProperty Name="Вид_блюда" ColumnName="Вид_блюда" />
+                <ScalarProperty Name="Выход" ColumnName="Выход" />
+                <ScalarProperty Name="Изображение" ColumnName="Изображение" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Архив_Приготовление">
+            <EntityTypeMapping TypeName="Nov4PracModel.Архив_Приготовление">
+              <MappingFragment StoreEntitySet="Архив_Приготовление">
+                <ScalarProperty Name="Код_приготовления" ColumnName="Код_приготовления" />
+                <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+                <ScalarProperty Name="Количество_порций" ColumnName="Количество_порций" />
+                <ScalarProperty Name="Дата_приготовления" ColumnName="Дата_приготовления" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Архив_Продукты">
+            <EntityTypeMapping TypeName="Nov4PracModel.Архив_Продукты">
+              <MappingFragment StoreEntitySet="Архив_Продукты">
+                <ScalarProperty Name="Код_продукта" ColumnName="Код_продукта" />
+                <ScalarProperty Name="Название_продукта" ColumnName="Название_продукта" />
+                <ScalarProperty Name="Калорийность" ColumnName="Калорийность" />
+                <ScalarProperty Name="Вес_продукта" ColumnName="Вес_продукта" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Архив_Рецепты">
+            <EntityTypeMapping TypeName="Nov4PracModel.Архив_Рецепты">
+              <MappingFragment StoreEntitySet="Архив_Рецепты">
+                <ScalarProperty Name="Код_рецепта" ColumnName="Код_рецепта" />
+                <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+                <ScalarProperty Name="Время_приготовления" ColumnName="Время_приготовления" />
+                <ScalarProperty Name="Технология_приготовления" ColumnName="Технология_приготовления" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Архив_СоставБлюд">
+            <EntityTypeMapping TypeName="Nov4PracModel.Архив_СоставБлюд">
+              <MappingFragment StoreEntitySet="Архив_СоставБлюд">
+                <ScalarProperty Name="Код_состава" ColumnName="Код_состава" />
+                <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+                <ScalarProperty Name="Код_продукта" ColumnName="Код_продукта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Блюда">
+            <EntityTypeMapping TypeName="Nov4PracModel.Блюда">
+              <MappingFragment StoreEntitySet="Блюда">
+                <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+                <ScalarProperty Name="Название_блюда" ColumnName="Название_блюда" />
+                <ScalarProperty Name="Вид_блюда" ColumnName="Вид_блюда" />
+                <ScalarProperty Name="Выход" ColumnName="Выход" />
+                <ScalarProperty Name="Изображение" ColumnName="Изображение" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Приготовление">
+            <EntityTypeMapping TypeName="Nov4PracModel.Приготовление">
+              <MappingFragment StoreEntitySet="Приготовление">
+                <ScalarProperty Name="Код_приготовления" ColumnName="Код_приготовления" />
+                <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+                <ScalarProperty Name="Количество_порций" ColumnName="Количество_порций" />
+                <ScalarProperty Name="Дата_приготовления" ColumnName="Дата_приготовления" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Продукты">
+            <EntityTypeMapping TypeName="Nov4PracModel.Продукты">
+              <MappingFragment StoreEntitySet="Продукты">
+                <ScalarProperty Name="Код_продукта" ColumnName="Код_продукта" />
+                <ScalarProperty Name="Название_продукта" ColumnName="Название_продукта" />
+                <ScalarProperty Name="Калорийность" ColumnName="Калорийность" />
+                <ScalarProperty Name="Вес_продукта" ColumnName="Вес_продукта" />
+                <ScalarProperty Name="Цена" ColumnName="Цена" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Рецепты">
+            <EntityTypeMapping TypeName="Nov4PracModel.Рецепты">
+              <MappingFragment StoreEntitySet="Рецепты">
+                <ScalarProperty Name="Код_рецепта" ColumnName="Код_рецепта" />
+                <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+                <ScalarProperty Name="Время_приготовления" ColumnName="Время_приготовления" />
+                <ScalarProperty Name="Технология_приготовления" ColumnName="Технология_приготовления" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="СоставБлюд">
+            <EntityTypeMapping TypeName="Nov4PracModel.СоставБлюд">
+              <MappingFragment StoreEntitySet="СоставБлюд">
+                <ScalarProperty Name="Код_состава" ColumnName="Код_состава" />
+                <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+                <ScalarProperty Name="Код_продукта" ColumnName="Код_продукта" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

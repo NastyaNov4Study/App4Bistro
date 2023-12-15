@@ -1,0 +1,107 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="Хранилище Nov4PracModelContainer" CdmEntityContainer="Nov4PracEntities1">
+    <EntitySetMapping Name="Архив_Блюда">
+      <EntityTypeMapping TypeName="Nov4PracModel.Архив_Блюда">
+        <MappingFragment StoreEntitySet="Архив_Блюда">
+          <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+          <ScalarProperty Name="Название_блюда" ColumnName="Название_блюда" />
+          <ScalarProperty Name="Вид_блюда" ColumnName="Вид_блюда" />
+          <ScalarProperty Name="Выход" ColumnName="Выход" />
+          <ScalarProperty Name="Изображение" ColumnName="Изображение" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Архив_Приготовление">
+      <EntityTypeMapping TypeName="Nov4PracModel.Архив_Приготовление">
+        <MappingFragment StoreEntitySet="Архив_Приготовление">
+          <ScalarProperty Name="Код_приготовления" ColumnName="Код_приготовления" />
+          <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+          <ScalarProperty Name="Количество_порций" ColumnName="Количество_порций" />
+          <ScalarProperty Name="Дата_приготовления" ColumnName="Дата_приготовления" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Архив_Продукты">
+      <EntityTypeMapping TypeName="Nov4PracModel.Архив_Продукты">
+        <MappingFragment StoreEntitySet="Архив_Продукты">
+          <ScalarProperty Name="Код_продукта" ColumnName="Код_продукта" />
+          <ScalarProperty Name="Название_продукта" ColumnName="Название_продукта" />
+          <ScalarProperty Name="Калорийность" ColumnName="Калорийность" />
+          <ScalarProperty Name="Вес_продукта" ColumnName="Вес_продукта" />
+          <ScalarProperty Name="Цена" ColumnName="Цена" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Архив_Рецепты">
+      <EntityTypeMapping TypeName="Nov4PracModel.Архив_Рецепты">
+        <MappingFragment StoreEntitySet="Архив_Рецепты">
+          <ScalarProperty Name="Код_рецепта" ColumnName="Код_рецепта" />
+          <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+          <ScalarProperty Name="Время_приготовления" ColumnName="Время_приготовления" />
+          <ScalarProperty Name="Технология_приготовления" ColumnName="Технология_приготовления" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Архив_СоставБлюд">
+      <EntityTypeMapping TypeName="Nov4PracModel.Архив_СоставБлюд">
+        <MappingFragment StoreEntitySet="Архив_СоставБлюд">
+          <ScalarProperty Name="Код_состава" ColumnName="Код_состава" />
+          <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+          <ScalarProperty Name="Код_продукта" ColumnName="Код_продукта" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Блюда">
+      <EntityTypeMapping TypeName="Nov4PracModel.Блюда">
+        <MappingFragment StoreEntitySet="Блюда">
+          <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+          <ScalarProperty Name="Название_блюда" ColumnName="Название_блюда" />
+          <ScalarProperty Name="Вид_блюда" ColumnName="Вид_блюда" />
+          <ScalarProperty Name="Выход" ColumnName="Выход" />
+          <ScalarProperty Name="Изображение" ColumnName="Изображение" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Приготовление">
+      <EntityTypeMapping TypeName="Nov4PracModel.Приготовление">
+        <MappingFragment StoreEntitySet="Приготовление">
+          <ScalarProperty Name="Код_приготовления" ColumnName="Код_приготовления" />
+          <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+          <ScalarProperty Name="Количество_порций" ColumnName="Количество_порций" />
+          <ScalarProperty Name="Дата_приготовления" ColumnName="Дата_приготовления" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Продукты">
+      <EntityTypeMapping TypeName="Nov4PracModel.Продукты">
+        <MappingFragment StoreEntitySet="Продукты">
+          <ScalarProperty Name="Код_продукта" ColumnName="Код_продукта" />
+          <ScalarProperty Name="Название_продукта" ColumnName="Название_продукта" />
+          <ScalarProperty Name="Калорийность" ColumnName="Калорийность" />
+          <ScalarProperty Name="Вес_продукта" ColumnName="Вес_продукта" />
+          <ScalarProperty Name="Цена" ColumnName="Цена" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Рецепты">
+      <EntityTypeMapping TypeName="Nov4PracModel.Рецепты">
+        <MappingFragment StoreEntitySet="Рецепты">
+          <ScalarProperty Name="Код_рецепта" ColumnName="Код_рецепта" />
+          <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+          <ScalarProperty Name="Время_приготовления" ColumnName="Время_приготовления" />
+          <ScalarProperty Name="Технология_приготовления" ColumnName="Технология_приготовления" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="СоставБлюд">
+      <EntityTypeMapping TypeName="Nov4PracModel.СоставБлюд">
+        <MappingFragment StoreEntitySet="СоставБлюд">
+          <ScalarProperty Name="Код_состава" ColumnName="Код_состава" />
+          <ScalarProperty Name="Код_блюда" ColumnName="Код_блюда" />
+          <ScalarProperty Name="Код_продукта" ColumnName="Код_продукта" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>
